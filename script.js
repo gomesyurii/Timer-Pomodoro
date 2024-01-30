@@ -1,5 +1,6 @@
 let intervalId = null;
 let timeInSeconds = 25 * 60; 
+let clickSound  = new Audio('sound.mp3');
 
 function startTimer() {
     if (intervalId) {
@@ -34,3 +35,11 @@ function updateDisplay() {
     const displayElement = document.getElementById('timer-display');
     displayElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
+
+document.getElementById('start').addEventListener('click', function() {
+    clickSound.play();
+});
+
+document.getElementById('pause').addEventListener('click', function() {
+    clickSound.play();
+});
