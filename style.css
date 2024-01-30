@@ -1,0 +1,110 @@
+#card {
+    border-radius: 24px;
+    background: linear-gradient(145deg, #b54747, #983b3b);
+    box-shadow: 5px 5px 4px #602626, -5px -5px 4px #f25e5e;
+    width: 300px; 
+    margin: 0 auto; 
+    height: 300px;
+    padding: 20px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 10px; 
+    
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #2e0b0b; 
+}
+
+#buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+}
+
+#start {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    width: 100%;
+}
+
+#start:hover {
+    background-color: #b54747;
+    color: white;
+}
+#start, #pause, #reset {
+   
+    font-family: 'Courier New', Courier, monospace; 
+}
+
+#pause {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    width: 100%;
+}
+
+#pause:hover {
+    background-color: #b54747;
+    color: white;
+}
+
+#reset {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    width: 100%;
+}
+
+#reset:hover {
+    background-color: #b54747;
+    color: white;
+}
+
+#timer-display {
+  
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em; 
+    font-family: 'Courier New', Courier, monospace; 
+}
+
+#timer-display:hover {
+    color: white;
+}
+
