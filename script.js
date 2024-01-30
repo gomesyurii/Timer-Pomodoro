@@ -1,5 +1,5 @@
 let intervalId = null;
-let timeInSeconds = 3
+let timeInSeconds = 3;
 let clickSound  = new Audio('click.mp3');
 let restartSound = new audio('restart.wav');
 var focusSession = true;
@@ -28,14 +28,17 @@ function pauseTimer() {
 }
 
 function resetTimer() { 
-    focusSession = !focusSession;
+    updateBackground();
    if (focusSession) {
        timeInSeconds = 25 * 60; 
-       pauseTimer();
+       
     } else {
         timeInSeconds = 5 * 60;
-        pauseTimer();  
-    }
+       
+    } 
+    pauseTimer();
+    focusSession = !focusSession;
+   
     updateDisplay();
 }
 
@@ -46,10 +49,11 @@ function updateDisplay() {
     displayElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 
     if (timeInSeconds < 0) {
-        // endSound.play();
-        alert('Time is up!');
-        resetTimer();
         focusSession = !focusSession;
+        // endSound.play();
+       // alert('Time is up!');
+        notifyMe();
+        resetTimer();
         startTimer();
     }
 }
@@ -57,9 +61,28 @@ function updateDisplay() {
 function updateBackground() {
     const body = document.querySelector('body');
     if (focusSession) {
-        body.style.backgroundColor = '#f2f2f2';
+        body.style.backgroundColor = '#2e0b0b';
     } else {
-        body.style.backgroundColor = '#f2f2f2';
+        body.style.backgroundColor = '#1d5c2e';
     }
 }
 
+function notifyMe() {
+  
+    if (!("Notification" in window)) {
+        alert("Este navegador não suporta notificações de sistema");
+    }
+
+    else if (Notification.permission === "granted") {
+        var notification = new Notification("Tempo esgotado!");
+    }
+
+    else if (Notification.permission !== 'denied') {
+        Notification.requestPermission().then(function (permission) {
+            if (permission === "granted") {
+                var notification = new Notification("Tempo esgotado!");
+            }
+        });
+    }
+
+}
