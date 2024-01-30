@@ -1,8 +1,11 @@
 let intervalId = null;
-let timeInSeconds = 25 * 60; 
-let clickSound  = new Audio('sound.mp3');
+let timeInSeconds = 3
+let clickSound  = new Audio('click.mp3');
+let restartSound = new audio('restart.wav');
+var focusSession = true;
 
-function startTimer() {
+function startTimer() { 
+    clickSound.play();
     if (intervalId) {
         return; 
     }
@@ -17,15 +20,22 @@ function startTimer() {
 }
 
 function pauseTimer() {
+    clickSound.play();
     if (intervalId) {
         clearInterval(intervalId);
         intervalId = null;
     }
 }
 
-function resetTimer() {
-    pauseTimer();
-    timeInSeconds = 25 * 60;
+function resetTimer() { 
+    focusSession = !focusSession;
+   if (focusSession) {
+       timeInSeconds = 25 * 60; 
+       pauseTimer();
+    } else {
+        timeInSeconds = 5 * 60;
+        pauseTimer();  
+    }
     updateDisplay();
 }
 
@@ -34,12 +44,22 @@ function updateDisplay() {
     const seconds = timeInSeconds % 60;
     const displayElement = document.getElementById('timer-display');
     displayElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+    if (timeInSeconds < 0) {
+        // endSound.play();
+        alert('Time is up!');
+        resetTimer();
+        focusSession = !focusSession;
+        startTimer();
+    }
 }
 
-document.getElementById('start').addEventListener('click', function() {
-    clickSound.play();
-});
+function updateBackground() {
+    const body = document.querySelector('body');
+    if (focusSession) {
+        body.style.backgroundColor = '#f2f2f2';
+    } else {
+        body.style.backgroundColor = '#f2f2f2';
+    }
+}
 
-document.getElementById('pause').addEventListener('click', function() {
-    clickSound.play();
-});
